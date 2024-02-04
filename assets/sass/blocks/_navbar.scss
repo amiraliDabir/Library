@@ -1,0 +1,12 @@
+.navbar {
+    background-color: rgb(18, 18, 18);
+    height: 3rem;
+    padding: 0 10%;
+    @include dflex(row, space-between, center, wrap);
+
+    i {
+        color: white;
+        cursor: pointer;
+        font-size: 1.2rem;
+    }
+}
