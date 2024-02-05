@@ -155,6 +155,7 @@ let bucket = document.querySelector(".navbar__bucket")
 let fav = [];
 let pluses;
 let home = document.querySelector(".navbar__home");
+let filterBox = document.querySelector(".filter")
 let filteredLanguage = document.querySelector(".filter__language");
 let filterdAuthors = document.querySelector(".filter__author");
 let filterdGenres = document.querySelector(".filter__genere");
@@ -170,9 +171,6 @@ let genreInputs = [];
 let selectedLangs = [];
 let selectedAuthors = [];
 let selectedGenres = [];
-
-
-
 //functions
 
 function render(arr) {
@@ -209,6 +207,7 @@ function addToFav() {
 
 function showFav() {
     container.innerHTML = "";
+    filterBox.style = "display:none";
     container.classList.remove("container");
     container.classList.add("favContainer");
     renderFavs()
@@ -218,18 +217,37 @@ function showFav() {
 function renderFavs() {
     let temp = fav.map(favBook => {
         return `
-    <div class="favContainer__card">
+    <div class="favContainer__card" id=${favBook.id}>
         <img src="./assets/image/${favBook.id}.jpg">
         <div class="favContainer__card__detail">
             <h2><span>عنوان:</span>${favBook.title}</h2>
             <p><span>شاعر/نویسنده:</span>${favBook.author}</p>
             <p><span>زبان:</span>${favBook.language}</p>
+            <i class="fa-solid fa-trash trash-can" style="color:#c10000; cursor:pointer;";></i>
         </div>
     
     </div>
     `
     }).join("")
     container.innerHTML = temp;
+    let bins = document.querySelectorAll(".trash-can");
+    for (const bin of bins) {
+        bin.addEventListener("click", Delete)
+    }
+}
+
+
+function Delete() {
+    let card = this.parentElement.parentElement;
+    let id = card.getAttribute("id");
+    let newfav = fav.filter(book => {
+        return book.id != id
+    })
+    fav = newfav;
+    renderFavs()
+
+
+
 }
 
 function Home() {
@@ -365,7 +383,16 @@ function filterBooks() {
 
 }
 function reset() {
-    selectedAuthors, selectedGenres, selectedLangs = []
+    selectedAuthors, selectedGenres, selectedLangs = [];
+    for (const iterator of langInputs) {
+        iterator.checked = false;
+    }
+    for (const iterator of authorInputs) {
+        iterator.checked = false;
+    }
+    for (const iterator of genreInputs) {
+        iterator.checked = false;
+    }
     render(BOOKS);
 
 }
