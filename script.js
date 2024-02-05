@@ -206,8 +206,8 @@ function addToFav() {
 }
 
 function showFav() {
+    filterBox.classList.add("hidden")
     container.innerHTML = "";
-    filterBox.style = "display:none";
     container.classList.remove("container");
     container.classList.add("favContainer");
     renderFavs()
@@ -251,6 +251,7 @@ function Delete() {
 }
 
 function Home() {
+    filterBox.classList.remove("hidden")
     container.classList.remove("favContainer");
     container.classList.add("container");
     container.innerHTML = ""

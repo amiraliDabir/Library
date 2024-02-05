@@ -147,6 +147,10 @@ body {
   font-size: 1.5rem;
 }
 
+.hidden {
+  display: none;
+}
+
 .navbar {
   background-color: rgb(18, 18, 18);
   height: 3rem;
