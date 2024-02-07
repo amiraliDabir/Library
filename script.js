@@ -145,16 +145,13 @@ const BOOKS = [
         imgSrc: "16.jpg"
     }
 ]
-
-
-
 //variables
-
 let container = document.querySelector(".container")
 let bucket = document.querySelector(".navbar__bucket")
 let fav = [];
-let pluses;
+let carts;
 let home = document.querySelector(".navbar__home");
+let bar = document.getElementById("bar")
 let filterBox = document.querySelector(".filter")
 let filteredLanguage = document.querySelector(".filter__language");
 let filterdAuthors = document.querySelector(".filter__author");
@@ -176,32 +173,42 @@ let selectedGenres = [];
 function render(arr) {
     let temp = arr.map(book => {
         return `
-<div class="container__card " id='${book.id}'>
-    <div class="container__card__cover">
-        <h2 class="container__card__cover__title"><span>عنوان:</span>  ${book.title}</h2>
-        <i class="far fa-plus container__card__cover__plus"></i>
-        <p class="container__card__cover__author">${book.author}</p>
-        <p class="container__card__cover__language">${book.language}</p>
+
+<div class="container__card" id='${book.id}'>
+        <div class="container__card__img">
+            <img src="./assets/image/${book.id}.jpg" >
+        </div>
+        <div class="container__card__detail">
+        <h2 class="container__card__detail__title"> ${book.title}</h2>
+        <p class="container__card__detail__author">${book.author}</p>
+        <button class="container__card__detail__addToCart">اضافه به سبد<i class="fa-solid fa-cart-shopping"></i></button>
+        
+        </div>
     </div>
-    <img src="./assets/image/${book.id}.jpg">
-</div>
                 `
     }).join("")
     container.innerHTML = temp;
-    pluses = document.querySelectorAll(".container__card__cover__plus");
+    carts = document.querySelectorAll(".container__card__detail__addToCart");
 
-    for (const plus of pluses) {
-        plus.addEventListener("click", addToFav);
+    for (const cart of carts) {
+        cart.addEventListener("click", addToFav);
     }
 }
 
 
-function addToFav() {
-    let id = (this.parentElement.parentElement.getAttribute("id"))
+function addToFav(ev) {
+    let purchaseBtn = document.createElement("button")
+    purchaseBtn.innerHTML = `ادامه و پرداخت...`
+    purchaseBtn.classList.add("container__card__detail__purchase")
+    ev.target.style = "display:none";
+    ev.target.parentElement.appendChild(purchaseBtn)
+    let id = (ev.target.parentElement.parentElement.getAttribute("id"))
     let found = BOOKS.find(book => book.id == id);
     if (!fav.includes(found)) {
         fav.push(found);
     }
+    localStorage.setItem("cartItems", JSON.stringify(fav));
+
 
 }
 
@@ -215,6 +222,7 @@ function showFav() {
 }
 
 function renderFavs() {
+    fav = JSON.parse(localStorage.getItem("cartItems"));
     let temp = fav.map(favBook => {
         return `
     <div class="favContainer__card" id=${favBook.id}>
@@ -248,6 +256,10 @@ function Delete() {
 
 
 
+}
+
+function showMenu() {
+    filterBox.classList.toggle("hidden")
 }
 
 function Home() {
@@ -403,6 +415,7 @@ function reset() {
 
 bucket.addEventListener("click", showFav);
 home.addEventListener("click", Home);
+bar.addEventListener("click", showMenu)
 
 //calling-functions
 render(BOOKS);

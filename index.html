@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fa-IR" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,10 +12,21 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <i class="fa-solid fa-house navbar__home"></i>
-        <i class="fa-solid fa-bucket navbar__bucket"></i>
-    </nav>
+    <header class="header" lang="en" dir="ltr">
+        <div class="logobox">
+            <img id="logo" src="./assets/image/bookIcon.png">
+            <span style="font-family: cursive;">LIBRARY...</span>
+        </div>
+        <nav class="navbar">
+            <form id="form" role="search">
+                <input type="search" id="query" name="q" placeholder="Search..."
+                    aria-label="Search through site content">
+            </form>
+            <i class="fa-solid fa-house navbar__home"></i>
+            <i class="fa-solid fa-bucket navbar__bucket"></i>
+            <i id="bar" class="fa-solid fa-bars"></i>
+        </nav>
+    </header>
     <div class="main">
         <aside class="filter">
             <div class="filter__language">
@@ -35,6 +45,7 @@
         </div>
     </div>
     </div>
+
 </body>
 
 </html>

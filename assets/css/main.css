@@ -8,82 +8,132 @@ a {
   color: inherit;
 }
 
+@font-face {
+  font-family: font-farsi;
+  src: url("../fonts/sans.woff2");
+}
 body {
-  background-color: rgb(179, 157, 128);
+  background-color: #f2f7f7;
+  font-family: font-farsi;
 }
 
 .main {
+  position: relative;
+  top: 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
   margin: 30px auto;
-  width: 80%;
+}
+@media (min-width: 768) {
+  .main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 80%;
+  }
 }
 .main .container {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  max-width: 1431px;
-  width: 80%;
-  gap: 15px;
-}
-.main .container__card {
-  border-radius: 4px;
-  overflow: hidden;
-  width: 150px;
-  position: relative;
-  top: 0;
-  box-shadow: 2px 4px 8px 3px rgb(15, 15, 15);
-}
-.main .container__card__cover {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: none;
-  transition: 0.4s;
-}
-.main .container__card__cover__plus {
-  font-size: 1.3rem;
-  height: 24px;
-  width: 24px;
-  font-weight: 655;
-  color: rgb(231, 231, 231);
-  transition: 0.2s;
-}
-.main .container__card__cover__plus:hover {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: yellow;
-  transition: 0.1s;
-}
-.main .container__card img {
-  width: 100%;
-  height: 250px;
-  border-radius: 4px;
-}
-.main .container__card:hover .container__card__cover {
-  color: azure;
-  text-align: center;
-  display: flex;
-  backdrop-filter: brightness(20%);
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  max-width: 1431px;
+  gap: 15px;
+  width: 90%;
+}
+.main .container__card {
+  max-width: 270px;
+  background-color: #f2f7f7;
+  transition: 0.3s;
+  box-shadow: 2px 4px 6px 4px rgb(101, 101, 101);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  flex-wrap: nowrap;
+}
+@media (min-width: 768px) {
+  .main .container__card {
+    width: 30%;
+  }
+}
+@media (min-width: 900px) {
+  .main .container__card {
+    width: 20%;
+  }
+}
+.main .container__card__img {
+  width: 150px;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .main .container__card__img {
+    width: 100%;
+  }
+}
+.main .container__card__img img {
+  width: 100%;
+  height: 240px;
+}
+.main .container__card__detail {
+  text-align: center;
+}
+.main .container__card__detail__addToCart {
+  margin-bottom: 10px;
+  font-size: 0.8rem;
   font-weight: 600;
-  font-family: font1;
   cursor: pointer;
-  transition: 0.4s;
+  color: rgb(220, 219, 219);
+  padding: 6px 12px;
+  background-color: rgb(194, 34, 34);
+  border: 0;
+  border-radius: 5px;
 }
-@font-face {
-  font-family: font1;
-  src: url("../../fonts/kharazami.woff");
+.main .container__card__detail__addToCart i {
+  font-weight: 1.3rem;
+  margin-right: 5px;
+  color: rgb(220, 219, 219);
 }
-.main .favContainer {
+.main .container__card__detail__addToCart:hover {
+  background-color: rgb(255, 92, 92);
+}
+.main .container__card__detail__purchase {
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  color: rgb(194, 34, 34);
+  padding: 6px 12px;
+  border: 1px solid rgb(194, 34, 34);
+  border-radius: 5px;
+}
+.main .container__card__detail__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: rgb(54, 54, 54);
+}
+.main .container__card__detail__author {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgb(80, 80, 80);
+}
+.main .container__card:hover {
+  transform: scale(1.05);
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.favContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -94,12 +144,19 @@ body {
   gap: 20px;
 }
 @media (min-width: 768px) {
-  .main .favContainer {
+  .favContainer {
     width: 40%;
     gap: 20px;
   }
 }
-.main .favContainer__card {
+@media (min-width: 1200px) {
+  .favContainer {
+    width: 70%;
+    gap: 20px;
+    max-width: 1000px;
+  }
+}
+.favContainer__card {
   overflow: hidden;
   width: 100%;
   border-radius: 5px;
@@ -108,29 +165,41 @@ body {
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  background-color: rgba(202, 195, 157, 0.8392156863);
+  background-color: rgba(114, 196, 255, 0.839);
   box-shadow: 1px 4px 12px 2px rgb(15, 15, 15);
 }
-@media (min-width: 768px) {
-  .main .favContainer__card {
+@media (min-width: 1200px) {
+  .favContainer__card {
+    width: 70%;
+    gap: 20px;
+  }
+}
+@media (min-width: 450px) {
+  .favContainer__card {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 }
-.main .favContainer__card img {
+.favContainer__card img {
   width: 100%;
   height: 400px;
 }
+@media (min-width: 450px) {
+  .favContainer__card img {
+    width: 50%;
+    height: 320px;
+  }
+}
 @media (min-width: 768px) {
-  .main .favContainer__card img {
+  .favContainer__card img {
     height: 200px;
     width: 150px;
   }
 }
-.main .favContainer__card__detail {
+.favContainer__card__detail {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -139,44 +208,120 @@ body {
   flex: 2;
   position: relative;
 }
-.main .favContainer__card__detail i {
+.favContainer__card__detail i {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 20px;
+  left: 0px;
   font-size: 1.5rem;
+}
+@media (min-width: 450px) {
+  .favContainer__card__detail i {
+    left: 10px;
+  }
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
-.navbar {
-  background-color: rgb(18, 18, 18);
-  height: 3rem;
-  padding: 0 10%;
+.header {
+  background-color: rgb(128, 187, 247);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 5px 5px 5px 3px #90829d;
 }
-.navbar i {
-  color: white;
+@media (min-width: 768px) {
+  .header {
+    width: 90%;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+}
+.header .logobox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 0 5%;
+}
+.header #logo {
+  height: 65px;
+  width: 65px;
+}
+.header .navbar {
+  margin: 0 auto;
+  border-radius: 4px;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.header .navbar #bar {
+  display: inline-block;
+  margin: 0;
+}
+.header .navbar #form {
+  display: none;
+}
+@media (min-width: 768px) {
+  .header .navbar #form {
+    width: 300px;
+  }
+}
+@media (min-width: 500px) {
+  .header .navbar #form {
+    background-color: #d1ecfe;
+    border: none;
+    height: 44px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .header .navbar #form input {
+    all: unset;
+    font: 16px system-ui;
+    color: #252424;
+    height: 100%;
+    width: 100%;
+    padding: 6px 10px;
+  }
+}
+.header .navbar ::placeholder {
+  color: #2f2b2b;
+  opacity: 0.7;
+}
+.header .navbar i {
+  color: rgb(117, 107, 117);
   cursor: pointer;
   font-size: 1.2rem;
+  margin: 25px;
 }
 
 .filter {
-  background-color: rgb(231, 216, 123);
-  padding: 16px 8px 16px 32px;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 10px;
+  background-color: rgb(224, 224, 224);
   border-radius: 4px;
-  box-shadow: 2px 4px 8px 3px rgb(15, 15, 15);
+  padding: 16px 8px 16px 32px;
+  box-shadow: 1px 2px 6px 1px rgb(15, 15, 15);
+  border: 1px solid gray;
 }
 .filter button {
   padding: 8px 16px;
-  background-color: rgb(50, 49, 48);
-  color: rgb(231, 216, 123);
+  background-color: rgb(128, 187, 247);
+  color: rgb(19, 19, 19);
   border-radius: 5px;
   display: block;
   margin: 20px auto;

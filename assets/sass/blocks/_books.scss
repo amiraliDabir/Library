@@ -1,130 +1,192 @@
+@font-face {
+    font-family: font-farsi;
+    src: url("../fonts/sans.woff2");
+}
+
 body {
-    background-color: rgb(179, 157, 128)
+    background-color: #f2f7f7;
+    font-family: font-farsi;
 }
 
 .main {
-    @include dflex(row, space-around, flex-start, wrap);
+    position: relative;
+    top: 0;
+    @include dflex(row, center, center, nowrap);
     margin: 30px auto;
-    width: 80%;
 
-
-
-    .container {
-        @include dflex(row, flex-end, flex-start, wrap);
-        max-width: 1431px;
+    @media(min-width:768) {
+        @include dflex(row, center, center, nowrap);
         width: 80%;
-        gap: 15px;
-
-
-        &__card {
-            border-radius: 4px;
-            overflow: hidden;
-            width: 150px;
-            position: relative;
-            top: 0;
-            box-shadow: 2px 4px 8px 3px rgb(15, 15, 15);
-
-            &__cover {
-
-                position: absolute;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                display: none;
-                transition: .4s;
-
-                &__plus {
-                    font-size: 1.3rem;
-                    height: 24px;
-                    width: 24px;
-                    font-weight: 655;
-                    color: rgb(231, 231, 231);
-                    transition: .2s;
-                }
-
-                &__plus:hover {
-                    font-size: 1.6rem;
-                    font-weight: 700;
-                    color: yellow;
-                    transition: .1s;
-                }
-
-            }
-
-            img {
-                width: 100%;
-                height: 250px;
-                border-radius: 4px;
-            }
-        }
-
-        &__card:hover .container__card__cover {
-            @font-face {
-                font-family: font1;
-                src: url("../../fonts/kharazami.woff");
-            }
-
-            color: azure;
-            text-align: center;
-            display: flex;
-            backdrop-filter: brightness(20%);
-            flex-direction: column;
-            justify-content: center;
-            align-items:center;
-            font-weight: 600;
-            font-family: font1;
-            cursor: pointer;
-            transition: .4s;
-        }
-
     }
 
-    .favContainer {
-        @media(min-width: 768px) {
-            width: 40%;
-            gap: 20px;
-        }
-
-        @include dflex(column, center, center, wrap);
+    .container {
+        @include dflex(row, center, center, wrap);
+        max-width: 1431px;
+        gap: 15px;
         width: 90%;
-        margin: 50px auto;
-        gap: 20px;
 
         &__card {
-            @media(min-width: 768px) {
-                @include dflex(row, flex-start, center, wrap);
+            max-width: 270px;
+            background-color: #f2f7f7;
+            transition: .3s;
+            box-shadow: 2px 4px 6px 4px rgb(101, 101, 101);
+            border-radius: 6px;
+            overflow: hidden;
+            @include dflex(column, center, space-between, nowrap);
+
+            @media(min-width:768px) {
+                width: 30%;
             }
 
-            overflow: hidden;
-            width: 100%;
-            border-radius: 5px;
-            @include dflex(column, flex-start, center, wrap);
-            background-color: #cac39dd6;
-            box-shadow: 1px 4px 12px 2px rgb(15, 15, 15);
+            @media(min-width:900px) {
+                width: 20%;
+            }
 
-            img {
+
+            &__img {
                 @media(min-width:768px) {
-                    height: 200px;
-                    width: 150px;
+                    width: 100%;
                 }
 
-                width: 100%;
-                height: 400px;
+                width: 150px;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: 240px;
+                }
             }
 
             &__detail {
-                @media(min-width: 768px) {}
+                text-align: center;
 
-                @include dflex(column, flex-end, center, wrap);
-                flex: 2;
-                position: relative;
+                &__addToCart {
+                    margin-bottom: 10px;
+                    font-size: .8rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    color: rgb(220, 219, 219);
+                    padding: 6px 12px;
+                    background-color: rgb(194, 34, 34);
+                    border: 0;
+                    border-radius: 5px;
 
-                i {
-                    position: absolute;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    left: 20px;
-                    font-size: 1.5rem;
+                    i {
+                        font-weight: 1.3rem;
+                        margin-right: 5px;
+                        color: rgb(220, 219, 219);
+                    }
+                }
+
+                &__addToCart:hover {
+                    background-color: rgb(255, 92, 92);
+                }
+
+
+                &__purchase {
+                    margin-bottom: 10px;
+                    font-size: .8rem;
+                    font-weight: 800;
+                    cursor: pointer;
+                    color: rgb(194, 34, 34);
+                    padding: 6px 12px;
+                    border: 1px solid rgb(194, 34, 34);
+                    border-radius: 5px;
+                }
+
+                &__title {
+                    margin: 0;
+                    font-size: 1rem;
+                    font-weight: 800;
+                    color: rgb(54, 54, 54);
+                }
+
+                &__author {
+                    margin: 0;
+                    font-size: .9rem;
+                    font-weight: 500;
+                    color: rgb(80, 80, 80);
+                }
+            }
+        }
+
+        &__card:hover {
+            transform: scale(1.05);
+            transition: .2s;
+            cursor: pointer;
+        }
+    }
+
+}
+
+.favContainer {
+
+    @media(min-width: 768px) {
+        width: 40%;
+        gap: 20px;
+    }
+
+    @media(min-width: 1200px) {
+        width: 70%;
+        gap: 20px;
+        max-width: 1000px;
+    }
+
+    @include dflex(column, center, center, wrap);
+    width: 90%;
+    margin: 50px auto;
+    gap: 20px;
+
+    &__card {
+        @media(min-width: 1200px) {
+            width: 70%;
+            gap: 20px;
+        }
+
+        @media(min-width: 450px) {
+            @include dflex(row, flex-start, center, nowrap);
+        }
+
+        overflow: hidden;
+        width: 100%;
+        border-radius: 5px;
+        @include dflex(column, flex-start, center, wrap);
+        background-color: rgba(114, 196, 255, 0.839);
+        box-shadow: 1px 4px 12px 2px rgb(15, 15, 15);
+
+        img {
+            @media(min-width: 450px) {
+                width: 50%;
+                height: 320px;
+            }
+
+            @media(min-width:768px) {
+                height: 200px;
+                width: 150px;
+            }
+
+            width: 100%;
+            height: 400px;
+        }
+
+        &__detail {
+            @include dflex(column, flex-end, center, wrap);
+            flex: 2;
+            position: relative;
+
+
+
+
+
+            i {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 0px;
+                font-size: 1.5rem;
+
+                @media(min-width:450px) {
+                    left: 10px;
                 }
             }
         }
@@ -132,7 +194,8 @@ body {
 }
 
 
+
 //hidden class
-.hidden{
-    display: none;
+.hidden {
+    display: none !important;
 }
